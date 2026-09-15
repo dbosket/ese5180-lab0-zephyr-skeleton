@@ -14,7 +14,7 @@
 /* The devicetree node identifier for the "led0" alias. */
 //#define LED0_NODE DT_ALIAS(led0)
 #define LED5180_NODE DT_ALIAS(led5180)
-#define SW0_NODE DT_ALIAS(sw0)
+#define SW5180_NODE DT_ALIAS(sw5180)
 
 /*
  * A build error on this line means your board is unsupported.
@@ -22,7 +22,7 @@
  */
 //static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED0_NODE, gpios);
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED5180_NODE, gpios);
-static const struct gpio_dt_spec sw0 = GPIO_DT_SPEC_GET(SW0_NODE, gpios);
+static const struct gpio_dt_spec sw = GPIO_DT_SPEC_GET(SW5180_NODE, gpios);
 
 int main(void)
 {
@@ -34,7 +34,7 @@ int main(void)
 	if (!gpio_is_ready_dt(&led)) {
 		return 0;
 	}
-	if (!gpio_is_ready_dt(&sw0)) {
+	if (!gpio_is_ready_dt(&sw)) {
 		return 0;
 	}
 
@@ -43,7 +43,7 @@ int main(void)
 	if (ret < 0) {
 		return 0;
 	}
-	ret = gpio_pin_configure_dt(&sw0, GPIO_INPUT);
+	ret = gpio_pin_configure_dt(&sw, GPIO_INPUT);
 	if (ret < 0) {
 		return 0;
 	}
@@ -51,7 +51,7 @@ int main(void)
 	while (1) {
 
 		// Check current value of sw (high if pressed | low if not)
-		ret = gpio_pin_get_dt(&sw0);
+		ret = gpio_pin_get_dt(&sw);
 		
 		if (ret < 0) {
 			return 0;
