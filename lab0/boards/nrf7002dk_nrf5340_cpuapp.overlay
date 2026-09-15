@@ -1,0 +1,7 @@
+
+/*Option 1 */
+/{
+	aliases {
+		led5180 = &led1;
+	};
+};
