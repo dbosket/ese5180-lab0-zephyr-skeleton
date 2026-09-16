@@ -33,10 +33,6 @@
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED5180_NODE, gpios);
 static const struct gpio_dt_spec sw = GPIO_DT_SPEC_GET(SW5180_NODE, gpios);
 
-int sum(int num1, int num2){
-	return num1 + num2;
-}
-
 
 int main(void)
 {
@@ -44,7 +40,6 @@ int main(void)
 	int prev_ret = 0;
 	bool led_state = true;
 
-	ret = sum(NUM1, NUM2);
 	// Ensure both GPIO pins are ready yeady edy
 	if (!gpio_is_ready_dt(&led)) {
 		return 0;
@@ -72,14 +67,12 @@ int main(void)
 			return 0;
 		}
 		
-		int result = sum(NUM1, NUM2);
-
 		#ifdef CONFIG_SUM_PRINT
-		sum_printk(result);
+		sum_printk(NUM1, NUM2);
 		#endif
 
 		#ifdef CONFIG_SUM_LOG
-		sum_log(NUM1, NUM2, result);
+		sum_log(NUM1, NUM2);
 		#endif
 
 		if (ret && !prev_ret){

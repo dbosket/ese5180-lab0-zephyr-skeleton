@@ -3,6 +3,6 @@
 
 #include <zephyr/logging/log.h>
 
-void sum_log(int a, int b, int ret);
+int sum_log(int a, int b);
 
 #endif

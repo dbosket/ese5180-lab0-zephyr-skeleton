@@ -1,5 +1,7 @@
 #include "sum_printk.h"
 
-void sum_printk(int retval){
+int sum_printk(int a, int b){
+    int retval = a + b;
     printk("The return value is %d\n", retval);
+    return retval;
 }

@@ -8,6 +8,6 @@
 #include <inttypes.h>
 
 
-void sum_printk(int retval);
+int sum_printk(int a, int b);
 
 #endif
