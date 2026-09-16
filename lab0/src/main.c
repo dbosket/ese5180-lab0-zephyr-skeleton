@@ -8,14 +8,23 @@
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/gpio.h>
 
+#ifdef CONFIG_SUM_PRINT
+#include "sum_printk.h"
+#endif
+
+#ifdef CONFIG_SUM_LOG
+#include "sum_log.h"
+#endif
+
 /* 1000 msec = 1 sec */
-#define SLEEP_TIME_MS   100
+#define SLEEP_TIME_MS   300
 
 /* The devicetree node identifier for the "led0" alias. */
 //#define LED0_NODE DT_ALIAS(led0)
 #define LED5180_NODE DT_ALIAS(led5180)
 #define SW5180_NODE DT_ALIAS(sw5180)
-
+#define NUM1 44444
+#define NUM2 33333
 /*
  * A build error on this line means your board is unsupported.
  * See the sample documentation for information on how to fix this.
@@ -24,12 +33,18 @@
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED5180_NODE, gpios);
 static const struct gpio_dt_spec sw = GPIO_DT_SPEC_GET(SW5180_NODE, gpios);
 
+int sum(int num1, int num2){
+	return num1 + num2;
+}
+
+
 int main(void)
 {
 	int ret; 
 	int prev_ret = 0;
 	bool led_state = true;
 
+	ret = sum(NUM1, NUM2);
 	// Ensure both GPIO pins are ready yeady edy
 	if (!gpio_is_ready_dt(&led)) {
 		return 0;
@@ -52,11 +67,21 @@ int main(void)
 
 		// Check current value of sw (high if pressed | low if not)
 		ret = gpio_pin_get_dt(&sw);
-		
+
 		if (ret < 0) {
 			return 0;
 		}
 		
+		int result = sum(NUM1, NUM2);
+
+		#ifdef CONFIG_SUM_PRINT
+		sum_printk(result);
+		#endif
+
+		#ifdef CONFIG_SUM_LOG
+		sum_log(NUM1, NUM2, result);
+		#endif
+
 		if (ret && !prev_ret){
 			gpio_pin_toggle_dt(&led);
 			led_state = !led_state;
