@@ -12,4 +12,5 @@ config SUM_PRINT
 config SUM_LOG
     bool "Use logging implementation"
 
+
 endchoice

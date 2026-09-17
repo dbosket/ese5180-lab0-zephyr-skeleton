@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.28.0)
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(blinky)
 
-target_sources(app PRIVATE src/main.c)
+target_sources(app PRIVATE src/main.c ${CMAKE_CURRENT_SOURCE_DIR}/bme5180/bme.c)
 
 target_sources_ifdef(CONFIG_SUM_PRINT app PRIVATE
     sum_printk/sum_printk.c
@@ -13,8 +13,8 @@ target_sources_ifdef(CONFIG_SUM_LOG app PRIVATE
     sum_log/sum_log.c
 )
 target_include_directories_ifdef(CONFIG_SUM_PRINT app PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/sum_printk
+    ${CMAKE_CURRENT_SOURCE_DIR}/sum_printk ${CMAKE_CURRENT_SOURCE_DIR}/bme5180
 )
 target_include_directories_ifdef(CONFIG_SUM_LOG app PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/sum_log
+    ${CMAKE_CURRENT_SOURCE_DIR}/sum_log ${CMAKE_CURRENT_SOURCE_DIR}/bme5180
 )

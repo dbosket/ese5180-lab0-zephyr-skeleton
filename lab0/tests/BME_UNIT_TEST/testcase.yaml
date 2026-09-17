@@ -1,0 +1,7 @@
+tests:
+ bme.test:
+   platform_allow: qemu_cortex_m3     # comment out 'platform_allow' and run twister without -p flag to auto-select available boards
+   tags:
+      - sum_log
+      - unit
+   harness: ztest
