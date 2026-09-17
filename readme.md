@@ -7,10 +7,10 @@
 **GitHub Repository URL:** 
 
 ## 3. Build and Flash using only west commands and not the GUI. Show the terminal prints by embedding a screenshot in your README.md.![Alternative text description](pngs/screenshot.png)
-![3](lab0/pngs/3.png)
+![3](lab0/pngs/3.PNG)
 ## 6. Take screenshots of console output for both builds:
-  ![CONFIG_SUM_PRINT=y → result printed with printk().](lab0/pngs/6a.png)
-  ![CONFIG_SUM_LOG=y → result printed with the Logger (include hexdump).](lab0/pngs/6a.png)
+  ![CONFIG_SUM_PRINT=y → result printed with printk().](lab0/pngs/6a.PNG)
+  ![CONFIG_SUM_LOG=y → result printed with the Logger (include hexdump).](lab0/pngs/6a.PNG)
   
   
 ## 7. Take screenshots of the testing outputs (laptop) in the terminal.
